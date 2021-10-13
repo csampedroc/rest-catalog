@@ -17,7 +17,8 @@ class ProductSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Product
-        fields = '__all__'
+        fields = ('sku', 'name', 'price', 'id_brand', 'queries', 'created_at')
+        read_only_fields = ('created_at', 'queries')
         
 
 class UserSerializer(serializers.ModelSerializer):
