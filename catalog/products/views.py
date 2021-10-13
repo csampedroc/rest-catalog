@@ -1,5 +1,4 @@
 from django.contrib.auth.models import User
-from django.db.models import query
 from rest_framework import generics, serializers
 
 from .models import Brand, Product
@@ -13,11 +12,11 @@ class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
 class BrandList(generics.ListCreateAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
 class BrandDetail(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
+    queryset = Brand.objects.all()
+    serializer_class = BrandSerializer
 class UserList(generics.ListAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
