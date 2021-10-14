@@ -11,6 +11,13 @@ class ProductList(generics.ListCreateAPIView):
 class ProductDetail(generics.RetrieveUpdateDestroyAPIView):
     queryset = Product.objects.all()
     serializer_class = ProductSerializer
+
+    def retrieve(self, request, *args, **kwargs):
+        obj = self.get_object()
+        obj.queries = obj.queries + 1
+        obj.save(update_fields=("queries", ))
+        return super().retrieve(request, *args, **kwargs)
+
 class BrandList(generics.ListCreateAPIView):
     queryset = Brand.objects.all()
     serializer_class = BrandSerializer
