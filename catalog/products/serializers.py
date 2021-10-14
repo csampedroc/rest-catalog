@@ -11,9 +11,12 @@ class BrandSerializer(serializers.ModelSerializer):
 
 
 class ProductSerializer(serializers.ModelSerializer):
+
+    created_by = serializers.ReadOnlyField(source="owner.username")
+
     class Meta:
         model = Product
-        fields = ("id", "sku", "name", "price", "id_brand", "queries", "created_at")
+        fields = ("id", "sku", "name", "price", "id_brand", "created_by", "queries", "created_at")
         read_only_fields = ("created_at", "queries")
 
 
